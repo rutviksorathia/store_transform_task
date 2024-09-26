@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:smooth_corner/smooth_corner.dart';
 import 'package:stacked/stacked.dart';
 import 'package:store_transform_task/services/connectivity_service.dart';
@@ -87,19 +88,30 @@ class HomeView extends StackedView<HomeViewModel> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Center(
-                        child: Container(
-                          height: 200,
-                          width: 200,
-                          decoration: ShapeDecoration(
-                            shape: SmoothRectangleBorder(
-                              borderRadius: BorderRadius.circular(100),
+                        child: GestureDetector(
+                          onTap: () {
+                            viewModel.handleProfileCameraOrGalleryButtonTap(
+                                ImageSource.gallery);
+                          },
+                          child: Container(
+                            height: 200,
+                            width: 200,
+                            clipBehavior: Clip.antiAlias,
+                            decoration: ShapeDecoration(
+                              shape: SmoothRectangleBorder(
+                                borderRadius: BorderRadius.circular(100),
+                              ),
+                              color: Colors.grey.shade900,
                             ),
-                            color: Colors.grey.shade900,
-                          ),
-                          child: Icon(
-                            Icons.camera_alt_outlined,
-                            size: 60,
-                            color: Colors.grey.shade800,
+                            child: viewModel.profileImage != null
+                                ? Image.file(
+                                    viewModel.profileImage!,
+                                  )
+                                : const Icon(
+                                    Icons.camera_alt_outlined,
+                                    size: 60,
+                                    color: Color.fromRGBO(66, 66, 66, 1),
+                                  ),
                           ),
                         ),
                       ),
@@ -214,15 +226,26 @@ class HomeView extends StackedView<HomeViewModel> {
                             onTap: viewModel.handleSubmitButtonTap,
                             child: Container(
                               color: Colors.red,
-                              child: const Padding(
-                                padding: EdgeInsets.all(12.0),
-                                child: Text(
-                                  "Submit",
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500,
-                                    color: Colors.white,
-                                  ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(12.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    const Text(
+                                      "Submit",
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    const SizedBox(width: 12),
+                                    if (viewModel
+                                        .busy(viewModel.handleSubmitButtonTap))
+                                      const CircularProgressIndicator(
+                                        color: Colors.white,
+                                      ),
+                                  ],
                                 ),
                               ),
                             ),

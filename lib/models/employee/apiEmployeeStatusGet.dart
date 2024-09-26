@@ -35,13 +35,10 @@ class ApiEmployeeStatusGetRequestBody {
 
 Future<ApiEmployeeStatusGetResponseBody> apiEmployeeStatusGet(
     {required ApiEmployeeStatusGetRequestBody body}) async {
-  print(body.toMap());
   var response = await sendRequest.post(
     "emp-code",
     body: body.toMap(),
   );
-
-  print(response.body);
 
   return ApiEmployeeStatusGetResponseBody.fromMap(jsonDecode(response.body));
 }

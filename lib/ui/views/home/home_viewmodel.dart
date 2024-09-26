@@ -1,4 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_cropper/image_cropper.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:stacked/stacked.dart';
 import 'package:store_transform_task/models/employee/apiEmployeeStatusGet.dart';
 import 'package:store_transform_task/ui/utils/toast.dart';
@@ -68,6 +72,7 @@ class HomeViewModel extends BaseViewModel {
         selectedScreenShow = ScreenShow.break_out;
         selectedBreakType = BreakType.sb;
       } else {
+        selectedBreakType = BreakType.lb;
         selectedScreenShow = ScreenShow.login;
         employeeCodeController.clear();
       }
@@ -76,6 +81,30 @@ class HomeViewModel extends BaseViewModel {
       showToast(text: e.toString());
     } finally {
       setBusyForObject(handleSubmitButtonTap, false);
+    }
+  }
+
+  File? profileImage;
+
+  Future handleProfileCameraOrGalleryButtonTap(ImageSource source) async {
+    try {
+      final image = await ImagePicker().pickImage(source: source);
+      if (image == null) return;
+      CroppedFile? croppedImage = await ImageCropper().cropImage(
+        sourcePath: image.path,
+        aspectRatio: const CropAspectRatio(ratioX: 1, ratioY: 1),
+      );
+
+      if (croppedImage == null) return;
+
+      File imageFile = File.fromUri(Uri.file(croppedImage.path));
+
+      profileImage = imageFile;
+      setBusyForObject(profileImage, true);
+
+      notifyListeners();
+    } finally {
+      setBusyForObject(profileImage, false);
     }
   }
 }

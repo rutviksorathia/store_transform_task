@@ -39,6 +39,8 @@ dependencies:
   stacked: ^3.4.3
   connectivity_plus: ^6.0.5
   smooth_corner: ^1.1.0
+  image_picker: ^1.1.2
+  image_cropper: ^8.0.2
 
 dev_dependencies:
   flutter_test:

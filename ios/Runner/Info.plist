@@ -45,5 +45,9 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string> You will need this to upload your profile image</string>
+	<key>NSCameraUsageDescription</key>
+	<string> You will need this to upload your profile image</string>
 </dict>
 </plist>
