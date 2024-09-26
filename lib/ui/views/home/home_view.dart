@@ -239,34 +239,29 @@ class HomeView extends StackedView<HomeViewModel> {
                                         ),
                                       ),
                                     const SizedBox(height: 20),
-                                    InkWell(
-                                      onTap: viewModel.handleSubmitButtonTap,
-                                      child: Container(
-                                        color: Colors.red,
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(12.0),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              const Text(
-                                                "Submit",
-                                                style: TextStyle(
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.w500,
-                                                  color: Colors.white,
-                                                ),
+                                    if (!viewModel
+                                        .busy(viewModel.handleSubmitButtonTap))
+                                      InkWell(
+                                        onTap: viewModel.handleSubmitButtonTap,
+                                        child: Container(
+                                          color: Colors.red,
+                                          child: const Padding(
+                                            padding: EdgeInsets.all(12.0),
+                                            child: Text(
+                                              "Submit",
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w500,
+                                                color: Colors.white,
                                               ),
-                                              const SizedBox(width: 12),
-                                              if (viewModel.busy(viewModel
-                                                  .handleSubmitButtonTap))
-                                                const CircularProgressIndicator(
-                                                  color: Colors.white,
-                                                ),
-                                            ],
+                                            ),
                                           ),
                                         ),
+                                      )
+                                    else
+                                      const CircularProgressIndicator(
+                                        color: Colors.white,
                                       ),
-                                    ),
                                   ],
                                 )
                               ],
@@ -439,38 +434,31 @@ class HomeView extends StackedView<HomeViewModel> {
                                               ),
                                             ),
                                           const SizedBox(height: 20),
-                                          InkWell(
-                                            onTap:
-                                                viewModel.handleSubmitButtonTap,
-                                            child: Container(
-                                              color: Colors.red,
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.all(12.0),
-                                                child: Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.min,
-                                                  children: [
-                                                    const Text(
-                                                      "Submit",
-                                                      style: TextStyle(
-                                                        fontSize: 16,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                        color: Colors.white,
-                                                      ),
+                                          if (!viewModel.busy(
+                                              viewModel.handleSubmitButtonTap))
+                                            InkWell(
+                                              onTap: viewModel
+                                                  .handleSubmitButtonTap,
+                                              child: Container(
+                                                color: Colors.red,
+                                                child: const Padding(
+                                                  padding: EdgeInsets.all(12.0),
+                                                  child: Text(
+                                                    "Submit",
+                                                    style: TextStyle(
+                                                      fontSize: 16,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      color: Colors.white,
                                                     ),
-                                                    const SizedBox(width: 12),
-                                                    if (viewModel.busy(viewModel
-                                                        .handleSubmitButtonTap))
-                                                      const CircularProgressIndicator(
-                                                        color: Colors.white,
-                                                      ),
-                                                  ],
+                                                  ),
                                                 ),
                                               ),
+                                            )
+                                          else
+                                            const CircularProgressIndicator(
+                                              color: Colors.white,
                                             ),
-                                          ),
                                         ],
                                       ),
                                     )
