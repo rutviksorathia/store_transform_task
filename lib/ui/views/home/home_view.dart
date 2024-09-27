@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:smooth_corner/smooth_corner.dart';
@@ -152,10 +153,9 @@ class LandscapeView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(
-                    Icons.abc_rounded,
-                    size: 60,
-                    color: Colors.grey.shade800,
+                  Image.asset(
+                    "assets/images/logo.png",
+                    height: 52,
                   ),
                   const SizedBox(height: 12),
                   if (viewModel.selectedScreenShow == ScreenShow.login)
@@ -171,14 +171,23 @@ class LandscapeView extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 12),
-                        TextFormField(
-                          controller: viewModel.employeeCodeController,
-                          decoration: InputDecoration(
-                            labelText: "006",
-                            border: const OutlineInputBorder(),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Colors.deepPurple.shade800,
+                        Container(
+                          width: double.infinity,
+                          color: Colors.grey.shade800,
+                          child: TextFormField(
+                            cursorColor: Colors.white,
+                            controller: viewModel.employeeCodeController,
+                            style: const TextStyle(color: Colors.white),
+                            decoration: const InputDecoration(
+                              contentPadding: EdgeInsets.symmetric(
+                                horizontal: 12,
+                                vertical: 8,
+                              ),
+                              border: OutlineInputBorder(),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.transparent,
+                                ),
                               ),
                             ),
                           ),
@@ -326,13 +335,12 @@ class PortraitView extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(height: 50),
-        Icon(
-          Icons.abc_rounded,
-          size: 60,
-          color: Colors.grey.shade800,
-        ),
         const SizedBox(height: 20),
+        Image.asset(
+          "assets/images/logo.png",
+          height: 52,
+        ),
+        const SizedBox(height: 10),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -349,14 +357,23 @@ class PortraitView extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 12),
-                  TextFormField(
-                    controller: viewModel.employeeCodeController,
-                    decoration: InputDecoration(
-                      labelText: "006",
-                      border: const OutlineInputBorder(),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Colors.deepPurple.shade800,
+                  Container(
+                    width: double.infinity,
+                    color: Colors.grey.shade800,
+                    child: TextFormField(
+                      cursorColor: Colors.white,
+                      controller: viewModel.employeeCodeController,
+                      style: const TextStyle(color: Colors.white),
+                      decoration: const InputDecoration(
+                        contentPadding: EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 8,
+                        ),
+                        border: OutlineInputBorder(),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.transparent,
+                          ),
                         ),
                       ),
                     ),
